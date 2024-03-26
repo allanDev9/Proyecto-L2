@@ -1,6 +1,7 @@
 #ifndef FACTURA_H_INCLUDED
 #define FACTURA_H_INCLUDED
 
+#include <iostream>
 #include <string>
 using namespace std;
 
