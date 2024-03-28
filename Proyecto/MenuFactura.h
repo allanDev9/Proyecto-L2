@@ -24,24 +24,34 @@ class MenuFactura{
     	
     	nuevaFactura.establecerDatos(nombre, apellido);
     	
-    	cout<<"\nFactura creada exitosamente. "<<endl;
-    	ofstream archivo;
-        archivo.open("1.Factura.txt",ios::out);
+    	string nombreArchivo = "Factura" + to_string(contadorFacturas++) + ".txt";
+    	
+    	ofstream archivo(nombreArchivo.c_str(), ios::out);
+        if(archivo.is_open()){
         archivo<<nombre<<endl<<apellido;
+        archivo.close();
+        
+        }
+        
+        cout<<"\nFractura creada exitosamente. "<<endl;
     }
     
     void mostrarContadorFacturas(){
-    	ofstream archivo;
+			cout<<"Se han creado "<< contadorFacturas << "facturas. " <<endl;
+	}
+    
+    void mostrarFacturas(){
     	if (contadorFacturas == 0){
     		cout<<"No se ha creado ninguna factura. "<<endl;
+    		return ;
 		}
-		else if(contadorFacturas == 1){
-			cout<<"Se ha creador 1 Factura. "<<endl;
-		}
-		else{
-			cout<<"Se han creado "<<contadorFacturas<< " facturas. "<<endl;
-		}
-	}
+		cout<<"Listado de facturas creadas. "<<endl;
+		for(int i = 0; i < contadorFacturas; i++){
+            cout<<"Factura "<< i+1 <<endl;
+            }
+          
+        }
+
     void mostrarMenuFactura(){
         int opcion=0;
         do{
@@ -54,13 +64,13 @@ class MenuFactura{
             
             switch (opcion){
             case 1:
-            	cout<<"\nIngresa los datos de su factura"<<endl;
+            	cout<<"\nIngrese los datos de su factura"<<endl;
             	crearFactura();
                 break;
                 
             case 2:
-                cout<<"Mostrando factura...";
-                mostrarContadorFacturas();
+                cout<<"\nLista de facturas creadas: "<<endl;
+                mostrarFacturas();
                 break;
             
             case 3:
