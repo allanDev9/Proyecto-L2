@@ -44,7 +44,11 @@ void mostrarMenu(){
             ejecutarLimpieza();
             system("cls");
             break;
-            
+        
+        case 4:
+        	exit(0);
+        	break;
+        	
         default:
             cout<<"Opcion no valida, intentelo de nuevo. "<<endl;
             break;

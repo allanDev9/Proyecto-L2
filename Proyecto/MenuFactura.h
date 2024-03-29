@@ -24,16 +24,18 @@ class MenuFactura{
     	
     	nuevaFactura.establecerDatos(nombre, apellido);
     	
-    	string nombreArchivo = "Factura" + to_string(contadorFacturas++) + ".txt";
+    	contadorFacturas++;
+    	string nombreArchivo = "Factura" + to_string(contadorFacturas) + ".txt";
     	
-    	ofstream archivo(nombreArchivo.c_str(), ios::out);
-        if(archivo.is_open()){
-        archivo<<nombre<<endl<<apellido;
-        archivo.close();
-        
-        }
-        
-        cout<<"\nFractura creada exitosamente. "<<endl;
+    	ofstream archivo(nombreArchivo);
+        if (archivo.is_open()) {
+              archivo << "Nombre: " << nombre << "\nApellido: " << apellido << endl;
+              archivo.close();
+              cout << "Factura creada y guardada como " << nombreArchivo << endl;
+            } else {
+                 cout << "No se pudo abrir el archivo para escribir.\n";
+         }
+       
     }
     
     void mostrarContadorFacturas(){
@@ -41,17 +43,44 @@ class MenuFactura{
 	}
     
     void mostrarFacturas(){
-    	if (contadorFacturas == 0){
-    		cout<<"No se ha creado ninguna factura. "<<endl;
-    		return ;
-		}
-		cout<<"Listado de facturas creadas. "<<endl;
-		for(int i = 0; i < contadorFacturas; i++){
-            cout<<"Factura "<< i+1 <<endl;
-            }
-          
+    	
+    	 if (contadorFacturas == 0) {
+        cout << "No se ha creado ninguna factura.\n";
+        return;
+        
+      }
+        cout << "Listado de facturas creadas:\n";
+        for (int i = 1; i <= contadorFacturas; i++) {
+             cout << "Factura" << i << ".txt" << endl;
         }
-
+        int numeroFactura;
+        cout<<"Ingrese el numero de factura que desea ver: ";
+        cin>>numeroFactura;
+        
+        if(numeroFactura >= 1 && numeroFactura <= contadorFacturas){
+        	abrirFactura(numeroFactura);
+		}else{
+			cout<<"Numero factura no valido. ";
+		}
+	}
+    
+    
+    void abrirFactura(int numeroFactura){
+    	cout<<"\nFactura # "<<contadorFacturas<<endl;
+    	cout<<"\n";
+    	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
+    	ifstream archivo(nombreArchivo);
+    	if(archivo.is_open()){
+    		string linea;
+    		while(getline(archivo, linea)){
+    			cout<<linea<<endl;
+			}
+    		archivo.close();
+		}else{
+			cout<<"No se pudo abrir el archivo. "<<endl;
+		}
+	}
+    
     void mostrarMenuFactura(){
         int opcion=0;
         do{
@@ -80,13 +109,15 @@ class MenuFactura{
             case 4:
                 system("cls");
                 break;
-                
+            
+            case 5:
+            	exit(0);
+            	break;
             default:
                 cout<<"Opcion no valida, intenta de nuevo. "<<endl;
                 break;
             }
         }while (opcion!=5);
-		exit(0);
     }
 };
 
