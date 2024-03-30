@@ -34,7 +34,8 @@ class MenuFactura{
         if (archivo.is_open()) {
               archivo << "Nombre: " << nombre << "\nApellido: " << apellido << endl;
               archivo.close();
-              cout << setw(75) << "Factura creada y guardada como " << nombreArchivo << endl;
+              cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
+              system("pause");
               system("cls");
             } else {
                  cout << setw(75) << "No se pudo abrir el archivo para escribir.\n";
@@ -44,7 +45,7 @@ class MenuFactura{
     }
     
     void mostrarContadorFacturas(){
-			cout<<"Se han creado "<< contadorFacturas << " factura. " <<endl;
+			cout<< endl<< setw (60)<< "Se han creado "<< contadorFacturas << " factura. " <<endl;
 	}
     
     void mostrarFacturas(){
@@ -57,11 +58,11 @@ class MenuFactura{
       	mostrarContadorFacturas();
       	system("cls");
       	cout<<"\n";
-        cout << setw(50) << "Listado de facturas creadas: ";
         mostrarContadorFacturas();
+        cout << setw(75) << "Listado de facturas creadas: ";
         cout<<"\n";
         for (int i = 1; i <= contadorFacturas; i++) {
-             cout<< setw(50) << "Factura" << i << ".txt" << endl;
+             cout<< endl << setw(61) << "Factura" << i << ".txt" << endl;
         }
         int numeroFactura;
         cout << setw(75) <<"Ingrese el numero de factura que desea ver: ";
@@ -79,7 +80,7 @@ class MenuFactura{
     
     
     void abrirFactura(int numeroFactura){
-    	cout<< endl << setw(60) <<"Factura # "<<contadorFacturas<<endl;
+    	cout<< endl<< setw(72) <<"Factura # "<<contadorFacturas<<endl;
     	cout<<"\n";
     	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
     	ifstream archivo(nombreArchivo);
