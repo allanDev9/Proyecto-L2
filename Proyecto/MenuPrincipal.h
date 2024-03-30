@@ -5,30 +5,32 @@
 #include <cstdlib>
 #include <string>
 #include "MenuFactura.h"
+#include <iomanip>
 using namespace std;
 
 class MenuPrincipal{
     public:
     	
 void verFactura(){
-    cout<<"Ingreso a la opcion de factura..."<<endl;
+	system("cls");
         MenuFactura menuFactura;
         menuFactura.mostrarMenuFactura();
  }
  void iniciarJuego(){
     cout<<"Iniciando juego..."<<endl;
 }
-void ejecutarLimpieza(){
-    cout<<"Ejecutando limpieza..."<<endl;
-}
 void mostrarMenu(){
     int opcion=0;
     do{
-        cout<<"\n Bienvenido ";
-        cout<<"\n\n1. Factura"<<endl;
-        cout<<"2. Juego Uno"<<endl;
-        cout<<"3. Limpieza"<<endl;
-        cout<<"4. Salir"<<endl;
+        cout<< setw(61)<< " Bienvenido ";
+        cout<<"\n";
+        cout<< endl<<setw(64)<<" Menu Principal ";
+        cout<<"\n";
+        cout<< endl<< setw(61)<<"1. Factura";
+        cout<< endl<< setw(63)<<"2. Juego Uno";
+        cout<< endl<<setw(62)<<"3. Limpieza";
+         cout<< endl<< setw(59)<<"4. Salir";
+        cout<<endl<<endl<< setw(74) <<"Seleccione una opcion: ";
         cin>>opcion;
 
         switch (opcion){
@@ -41,7 +43,6 @@ void mostrarMenu(){
             break;
         
         case 3:
-            ejecutarLimpieza();
             system("cls");
             break;
         
