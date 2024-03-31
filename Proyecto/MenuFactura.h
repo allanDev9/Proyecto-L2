@@ -8,7 +8,7 @@
 #include <fstream>
 #include <iomanip>
 using namespace std;
-
+ 
 class MenuFactura{
 	private:
 		int contadorFacturas = 0;	
@@ -37,7 +37,7 @@ class MenuFactura{
               cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
               system("pause");
               system("cls");
-            } else {
+            } else {  
                  cout << setw(75) << "No se pudo abrir el archivo para escribir.\n";
                  
          }
@@ -45,7 +45,7 @@ class MenuFactura{
     }
     
     void mostrarContadorFacturas(){
-			cout<< endl<< setw (60)<< "Se han creado "<< contadorFacturas << " factura. " <<endl;
+			cout<< endl<< setw (62)<< "Se han creado "<< contadorFacturas << " factura. " <<endl;
 	}
     
     void mostrarFacturas(){
@@ -65,7 +65,7 @@ class MenuFactura{
              cout<< endl << setw(61) << "Factura" << i << ".txt" << endl;
         }
         int numeroFactura;
-        cout << setw(75) <<"Ingrese el numero de factura que desea ver: ";
+        cout << setw(80) <<"Ingrese el numero de factura que desea ver: ";
         cin>>numeroFactura;
         system("cls");
         
@@ -80,7 +80,7 @@ class MenuFactura{
     
     
     void abrirFactura(int numeroFactura){
-    	cout<< endl<< setw(72) <<"Factura # "<<contadorFacturas<<endl;
+    	cout<< endl<< setw(73) <<"Factura # "<<contadorFacturas<<endl;
     	cout<<"\n";
     	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
     	ifstream archivo(nombreArchivo);
@@ -112,6 +112,8 @@ class MenuFactura{
             cout<< endl<<setw(70)<<"4. Limpiar pantalla";
             cout<< endl<<setw(59)<<"5. Salir";
             cout<< endl<<endl<<setw(74)<<"Seleccione una opcion: ";
+
+
             cin>>opcion;
             cout<<"\n";
             
