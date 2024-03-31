@@ -10,7 +10,6 @@ using namespace std;
 
 class MenuPrincipal{
     public:
-    	
 void verFactura(){
 	system("cls");
         MenuFactura menuFactura;

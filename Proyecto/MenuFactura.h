@@ -8,7 +8,7 @@
 #include <fstream>
 #include <iomanip>
 using namespace std;
- 
+
 class MenuFactura{
 	private:
 		int contadorFacturas = 0;	
@@ -90,7 +90,7 @@ class MenuFactura{
     		getline(archivo, nombre);
     		getline(archivo, apellido);
     		
-    		cout<< setw(59) << nombre <<endl;
+    		cout<< endl << setw(59) << nombre <<endl;
     		cout<< setw(61) << apellido <<endl;
     		
     		archivo.close();
