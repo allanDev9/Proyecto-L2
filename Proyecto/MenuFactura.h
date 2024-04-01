@@ -17,6 +17,8 @@ class MenuFactura{
     	system("cls");
     	Factura nuevaFactura;
     	string nombre, apellido;
+        int fecha;
+        string _fecha = to_string(fecha);
     	
     	cout<< setw(75) <<"Ingrese los datos de su factura";
     	cout<<"\n\n";
@@ -24,15 +26,18 @@ class MenuFactura{
     	cin>>nombre;
     	cout<< setw(65) <<"Ingrese su apellido: ";
     	cin>>apellido;
-    	
-    	nuevaFactura.establecerDatos(nombre, apellido);
+        cout<< setw(62) <<" Ingrese la fecha: ";
+        cin>>fecha;
+        
+
+    	nuevaFactura.establecerDatos(nombre, apellido, fecha);
     	
     	contadorFacturas++;
     	string nombreArchivo = "Factura" + to_string(contadorFacturas) + ".txt";
     	
     	ofstream archivo(nombreArchivo);
         if (archivo.is_open()) {
-              archivo << "Nombre: " << nombre << "\nApellido: " << apellido << endl;
+              archivo << "\nNombre: " << nombre << "\nApellido: " << apellido << "\nFecha: "<< fecha << endl;
               archivo.close();
               cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
               system("pause");
@@ -55,7 +60,6 @@ class MenuFactura{
         return;
         
       }
-      	mostrarContadorFacturas();
       	system("cls");
       	cout<<"\n";
         mostrarContadorFacturas();
@@ -76,25 +80,23 @@ class MenuFactura{
 			system("pause");
 			system("cls");
 		}
-	}
-    
-    
+    }
     void abrirFactura(int numeroFactura){
     	cout<< endl<< setw(73) <<"Factura # "<<contadorFacturas<<endl;
     	cout<<"\n";
     	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
     	ifstream archivo(nombreArchivo);
     	if(archivo.is_open()){
-    		string nombre, apellido;
+    		string nombre, apellido, 
+            int fecha;
     		
-    		getline(archivo, nombre);
-    		getline(archivo, apellido);
-    		
-    		cout<< endl << setw(59) << nombre <<endl;
-    		cout<< setw(61) << apellido <<endl;
-    		
+            cout<<nombre<<endl;
+            cout<<apellido<<endl;
+            cout<<fecha<<endl;
+            
+
     		archivo.close();
-    		cout<<"\n";
+    		cout<<"\n\n";
     		system("pause");
     		system("cls");
 		}else{

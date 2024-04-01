@@ -1,2 +1,4 @@
-Nombre: a
-Apellido: a
+
+Nombre: Allan
+Apellido: Pe¤a
+Fecha: 9

@@ -9,18 +9,16 @@ using namespace std;
 class Factura{
 	private:
 		string nombre, apellido;
+		int fecha;
 		
 	public:
-	void establecerDatos(string _nombre, string _apellido){
+	void establecerDatos(string _nombre, string _apellido, int _fecha){
 		
 		nombre = _nombre; 
 		apellido = _apellido;
+		fecha = _fecha;
+
 		
 	}
-	void mostrarDatos(){
-    cout<<"Nombre: "<<nombre<<endl;
-    cout<<"Apellido: "<<apellido<<endl;
-
-    }
 };
 #endif
