@@ -16,9 +16,7 @@ class MenuFactura{
     void crearFactura(){
     	system("cls");
     	Factura nuevaFactura;
-    	string nombre, apellido;
-        int fecha;
-        string _fecha = to_string(fecha);
+    	string nombre, apellido, fecha;
     	
     	cout<< setw(75) <<"Ingrese los datos de su factura";
     	cout<<"\n\n";
@@ -87,13 +85,11 @@ class MenuFactura{
     	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
     	ifstream archivo(nombreArchivo);
     	if(archivo.is_open()){
-    		string nombre, apellido, 
-            int fecha;
+    		string linea;
     		
-            cout<<nombre<<endl;
-            cout<<apellido<<endl;
-            cout<<fecha<<endl;
-            
+            while (getline(archivo, linea)){
+                cout<<linea<<endl;
+            }
 
     		archivo.close();
     		cout<<"\n\n";

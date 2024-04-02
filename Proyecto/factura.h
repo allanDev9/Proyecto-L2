@@ -8,11 +8,10 @@ using namespace std;
 
 class Factura{
 	private:
-		string nombre, apellido;
-		int fecha;
+		string nombre, apellido, fecha;
 		
 	public:
-	void establecerDatos(string _nombre, string _apellido, int _fecha){
+	void establecerDatos(string _nombre, string _apellido, string _fecha){
 		
 		nombre = _nombre; 
 		apellido = _apellido;
