@@ -50,15 +50,20 @@ void mostrarMenu(){
         	break;
         	
         default:
-            cout<<"Opcion no valida, intentelo de nuevo. "<<endl;
-            break;
+        	 if(opcion==1 && opcion==2 && opcion==3 && opcion==4){
+				system("cls");
+		}
+			else{
+				cout << endl << setw(80) <<"Opcion no valida, intentelo de nuevo. "<<endl;
+				system("cls");
+				
+			}
         
         }
 
-      } while (opcion!=4);
-   		exit(0);
-   }
-
+      } while (opcion<1 || opcion>4);
+   		
+    }
 };
 
 #endif

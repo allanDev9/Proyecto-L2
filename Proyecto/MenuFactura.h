@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <limits>
 using namespace std;
 
 class MenuFactura{
@@ -35,7 +36,7 @@ class MenuFactura{
     	
     	ofstream archivo(nombreArchivo);
         if (archivo.is_open()) {
-              archivo << "\nNombre: " << nombre << "\nApellido: " << apellido << "\nFecha: "<< fecha << endl;
+              archivo<<setw(70)<<"Nombre: " << nombre << "\n"<<setw(72)<<"Apellido: "<< apellido<<setw(69)<< "Fecha: "<< fecha << endl;
               archivo.close();
               cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
               system("pause");
@@ -98,7 +99,24 @@ class MenuFactura{
 		}else{
 			cout<< setw(50) <<"No se pudo abrir el archivo. "<<endl;
 		}
+        
     }
+    int condicionarCaracteres(const string caracter) {
+    string input;
+    int number;
+    while (true) {
+        cout << caracter;
+        getline(cin, input); 
+        stringstream stream(input); 
+            if (stream >> number) { 
+                return number;
+            }
+        } else {
+            cout << "Entrada no válida. Por favor, introduce un número entero.\n";
+        }
+    }
+
+
 	void mostrarMenuFactura(){
         int opcion=0;
         do{ 
@@ -110,7 +128,10 @@ class MenuFactura{
             cout<< endl<<setw(70)<<"4. Limpiar pantalla";
             cout<< endl<<setw(59)<<"5. Salir";
             cout<< endl<<endl<<setw(74)<<"Seleccione una opcion: ";
-
+            cin>>opcion;
+            cout<<"\n";
+            opcion = condicionarCaracteres("");
+               
 
             cin>>opcion;
             cout<<"\n";
@@ -137,8 +158,12 @@ class MenuFactura{
             	exit(0);
             	break;
             default:
+            if(opcion<=0){
+                system("cls");
+            }else{
                 cout<< setw(50) <<"Opcion no valida, intenta de nuevo. "<<endl;
                 break;
+              }
             }
         }while (opcion!=5);
     }
