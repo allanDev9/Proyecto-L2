@@ -17,7 +17,8 @@ class MenuFactura{
     void crearFactura(){
     	system("cls");
     	Factura nuevaFactura;
-    	string nombre, apellido, fecha;
+    	string nombre, apellido;
+        int dia, mes, anio;
     	
     	cout<< setw(75) <<"Ingrese los datos de su factura";
     	cout<<"\n\n";
@@ -25,9 +26,14 @@ class MenuFactura{
     	cin>>nombre;
     	cout<< setw(65) <<"Ingrese su apellido: ";
     	cin>>apellido;
-        cout<< setw(62) <<" Ingrese la fecha: ";
-        cin>>fecha;
-        
+        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cin>>dia;
+        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cin>>mes;
+        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cin>>anio;
+
+        string fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
 
     	nuevaFactura.establecerDatos(nombre, apellido, fecha);
     	
@@ -101,22 +107,6 @@ class MenuFactura{
 		}
         
     }
-    int condicionarCaracteres(const string caracter) {
-    string input;
-    int number;
-    while (true) {
-        cout << caracter;
-        getline(cin, input); 
-        stringstream stream(input); 
-            if (stream >> number) { 
-                return number;
-            }
-        } else {
-            cout << "Entrada no válida. Por favor, introduce un número entero.\n";
-        }
-    }
-
-
 	void mostrarMenuFactura(){
         int opcion=0;
         do{ 
@@ -128,14 +118,16 @@ class MenuFactura{
             cout<< endl<<setw(70)<<"4. Limpiar pantalla";
             cout<< endl<<setw(59)<<"5. Salir";
             cout<< endl<<endl<<setw(74)<<"Seleccione una opcion: ";
-            cin>>opcion;
-            cout<<"\n";
-            opcion = condicionarCaracteres("");
-               
-
-            cin>>opcion;
-            cout<<"\n";
+            char opcion_char;
+            cin>>opcion_char;
             
+        if (opcion_char < '0' || opcion_char > '5') {
+            system("cls");
+            continue;
+        }
+
+        opcion = opcion_char - '0';
+
             switch (opcion){
             case 1:
             	crearFactura();
@@ -158,14 +150,13 @@ class MenuFactura{
             	exit(0);
             	break;
             default:
-            if(opcion<=0){
+                cout<< setw(75) <<"Opcion no valida, intenta de nuevo. "<<endl;
                 system("cls");
-            }else{
-                cout<< setw(50) <<"Opcion no valida, intenta de nuevo. "<<endl;
                 break;
-              }
+              
             }
-        }while (opcion!=5);
+        }
+        while (opcion!=5);
     }
 };
 

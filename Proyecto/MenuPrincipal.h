@@ -19,8 +19,9 @@ void verFactura(){
     cout<<"Iniciando juego..."<<endl;
 }
 void mostrarMenu(){
-    int opcion=0;
+    int opcion;
     do{
+        system("cls");
         cout<< setw(61)<< " Bienvenido ";
         cout<<"\n";
         cout<< endl<<setw(64)<<" Menu Principal ";
@@ -30,7 +31,15 @@ void mostrarMenu(){
         cout<< endl<<setw(62)<<"3. Limpieza";
          cout<< endl<< setw(59)<<"4. Salir";
         cout<<endl<<endl<< setw(74) <<"Seleccione una opcion: ";
-        cin>>opcion;
+        char opcion_char;
+    	cin>>opcion_char;
+        
+        if (opcion_char < '0' || opcion_char > '4') {
+            system("cls");
+            continue; 
+        }
+
+        opcion = opcion_char - '0';
 
         switch (opcion){
         case 1:
@@ -50,20 +59,14 @@ void mostrarMenu(){
         	break;
         	
         default:
-        	 if(opcion==1 && opcion==2 && opcion==3 && opcion==4){
-				system("cls");
-		}
-			else{
-				cout << endl << setw(80) <<"Opcion no valida, intentelo de nuevo. "<<endl;
-				system("cls");
-				
-			}
-        
+            cout<< setw(50) <<"Opcion no valida, intenta de nuevo. "<<endl;
+            system("cls");
         }
 
-      } while (opcion<1 || opcion>4);
-   		
-    }
+      } 
+      while (opcion!=4);
+     
+   }
 };
 
 #endif
