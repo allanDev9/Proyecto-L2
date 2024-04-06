@@ -9,8 +9,5 @@ int main(){
     MenuPrincipal menu;
     menu.mostrarMenu();
     
-    MenuFactura menuFactura;
-    menuFactura.mostrarMenuFactura();
-    
     return 0;
 }

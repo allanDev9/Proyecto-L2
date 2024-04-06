@@ -12,7 +12,7 @@ using namespace std;
 
 class MenuFactura{
 	private:
-		int contadorFacturas = 0;	
+    int contadorFacturas = 0;	
     public:
     void crearFactura(){
     	system("cls");
@@ -26,11 +26,11 @@ class MenuFactura{
     	cin>>nombre;
     	cout<< setw(65) <<"Ingrese su apellido: ";
     	cin>>apellido;
-        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cout<< setw(65) <<" Ingrese el dia (DD): ";
         cin>>dia;
-        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cout<< setw(65) <<" Ingrese el mes (MM): ";
         cin>>mes;
-        cout<< setw(65) <<" Ingrese la dia (DD): ";
+        cout<< setw(65) <<" Ingrese el año (YYYY): ";
         cin>>anio;
 
         string fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
@@ -108,8 +108,10 @@ class MenuFactura{
         
     }
 	void mostrarMenuFactura(){
+        string entrada;
         int opcion=0;
         do{ 
+            system("cls");
         	cout<< endl<< setw(64)<<"Menu Factura";
         	cout<<"\n";
             cout<< endl<<setw(61)<<"1. Factura";
@@ -118,44 +120,54 @@ class MenuFactura{
             cout<< endl<<setw(70)<<"4. Limpiar pantalla";
             cout<< endl<<setw(59)<<"5. Salir";
             cout<< endl<<endl<<setw(74)<<"Seleccione una opcion: ";
-            char opcion_char;
-            cin>>opcion_char;
-            
-        if (opcion_char < '0' || opcion_char > '5') {
-            system("cls");
-            continue;
-        }
+            cin>>entrada;
 
-        opcion = opcion_char - '0';
+            bool esValido = false;
 
-            switch (opcion){
-            case 1:
-            	crearFactura();
-                break;
-                
-            case 2:
-                mostrarFacturas();
-                break;
-            
-            case 3:
-            	system("cls");
-            	return;
-                break;
-
-            case 4:
-                system("cls");
-                break;
-            
-            case 5:
-            	exit(0);
-            	break;
-            default:
-                cout<< setw(75) <<"Opcion no valida, intenta de nuevo. "<<endl;
-                system("cls");
-                break;
-              
+            if (entrada.length() == 1)
+            {
+                int codigoAscii = entrada[0];
+                if (codigoAscii >= '1' && codigoAscii <= '4')
+                {
+                    opcion = codigoAscii - '0';
+                    esValido = true;
+                }
             }
-        }
+
+            if (!esValido)
+            {
+                cout <<endl<< setw(83) << "Opcion no valida, intentelo de nuevo. ";
+                cout << "\n";
+                system("pause");
+                opcion = 0;
+            }
+            else{
+                switch (opcion){
+                case 1:
+                    crearFactura();
+                    break;
+
+                case 2:
+                    mostrarFacturas();
+                    break;
+
+                case 3:
+                    system("cls");
+                    return;
+                    break;
+
+                case 4:
+                    system("cls");
+                    break;
+
+                case 5:
+                    exit(0);
+                    break;
+                default:
+                    break;
+                }
+              }
+            }
         while (opcion!=5);
     }
 };
