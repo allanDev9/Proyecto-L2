@@ -5,17 +5,30 @@
 #include <string>
 #include <cstdlib> 
 #include <iomanip>
+#include <ctime>
 using namespace std;
 
 class MenuJuego{
-    private:
     public:
     void inciarJuegoDelUno(){
-        int cartas[108] = {'1A', '2A', '3A', '4A', '5A', '6A', '7A', '8A', '9A', '+2A', 'ReversaA', 'BloquearTurnoA',
-                           '1R', '2R', '3R', '4R', '5R', '6R', '7R', '8R', '9R', '+2R', 'ReversaR', 'BloquearTurnoR',
-                           '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '+2AM', 'ReversaAM', 'BloquearTurnoAM',
-                           '1V', '2V', '3V', '4V', '5V', '6V', '7V', '8V', '9V', '+2V', 'ReversaV', 'BloquearTurnoV',
-                           '+4_1', '+4_2', '+4_3', '+4_4', 'CambioDeColor1', 'CambioDeColor2', 'CambioDeColor3', 'CambioDeColor4'};
+        string cartas = "1A , 2A, 3A, 4A, 5A, 6A, 7A, 8A, 9A, +2A, ReversaA, BloquearTurnoA,"
+                        "1R, 2R, 3R, 4R, 5R, 6R, 7R, 8R, 9R, +2R, ReversaR, BloquearTurnoR,"
+                        "1AM, 2AM, 3AM, 4AM, 5AM, 6AM, 7AM, 8AM, 9AM, +2AM, ReversaAM, BloquearTurnoAM,"
+                        "1V, 2V, 3V, 4V, 5V, 6V, 7V, 8V, 9V, +2V, ReversaV, BloquearTurnoV,"
+                        "+4_1, +4_2, +4_3, +4_4, CambioDeColor1, CambioDeColor2, CambioDeColor3, CambioDeColor4";
+        
+        string jugadorUno[7];
+
+    srand(time(NULL));
+    for (int i = 0; i < 7; i++){
+        int indiceCarta = rand()% cartas.size();
+        jugadorUno[i]=cartas.substr(0, indiceCarta);
+        cartas.erase(0, indiceCarta + 1);
+    }
+    cout<<"Cartas del jugador uno: "<<endl;
+    for(const auto& cartas : jugadorUno){
+        cout<< cartas <<endl;
+       }
     }
 
     void mostrarMenuJuego(){
