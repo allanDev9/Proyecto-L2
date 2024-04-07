@@ -26,13 +26,13 @@ void mostrarMenu(){
     int opcion;
     do{
         system("cls");
-        cout<< endl<<setw(64)<<" Menu Principal ";
+        cout<< endl<<setw(88)<<" Menu Principal ";
         cout<<"\n";
-        cout<< endl<< setw(61)<<"1. Factura";
-        cout<< endl<< setw(63)<<"2. Juego Uno";
-        cout<< endl<<setw(62)<<"3. Limpieza";
-        cout<< endl<< setw(59)<<"4. Salir";
-        cout<<endl<<endl<< setw(74) <<"Seleccione una opcion: ";
+        cout<< endl<< setw(84)<<"1. Factura";
+        cout<< endl<< setw(86)<<"2. Juego Uno";
+        cout<< endl<<setw(85)<<"3. Limpieza";
+        cout<< endl<< setw(82)<<"4. Salir";
+        cout<<endl<<endl<< setw(93) <<"Seleccione una opcion: ";
         cin>>entrada;
 
         bool esValido = false;

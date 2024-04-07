@@ -112,14 +112,14 @@ class MenuFactura{
         int opcion=0;
         do{ 
             system("cls");
-        	cout<< endl<< setw(64)<<"Menu Factura";
+        	cout<< endl<< setw(85)<<"Menu Factura";
         	cout<<"\n";
-            cout<< endl<<setw(61)<<"1. Factura";
-            cout<< endl<<setw(65)<<"2. Ver factura";
-            cout<< endl<<setw(62)<<"3. Regresar";
-            cout<< endl<<setw(70)<<"4. Limpiar pantalla";
-            cout<< endl<<setw(59)<<"5. Salir";
-            cout<< endl<<endl<<setw(74)<<"Seleccione una opcion: ";
+            cout<< endl<<setw(84)<<"1. Factura";
+            cout<< endl<<setw(88)<<"2. Ver factura";
+            cout<< endl<<setw(85)<<"3. Regresar";
+            cout<< endl<<setw(93)<<"4. Limpiar pantalla";
+            cout<< endl<<setw(82)<<"5. Salir";
+            cout<< endl<<endl<<setw(93)<<"Seleccione una opcion: ";
             cin>>entrada;
 
             bool esValido = false;
