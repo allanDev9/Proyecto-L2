@@ -59,7 +59,7 @@ class MenuJuego{
                     break;                  // Pasar al siguiente jugador
                 }
             }
-
+   
             cout << "\nCartas del jugador"<< endl;
             for (const auto &carta : jugadores[0])
             {
