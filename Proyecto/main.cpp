@@ -2,7 +2,7 @@
 #include "MenuFactura.h"
 #include "MenuPrincipal.h"
 #include "factura.h"
-
+ 
 using namespace std;
 
 int main(){  

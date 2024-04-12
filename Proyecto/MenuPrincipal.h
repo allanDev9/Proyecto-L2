@@ -1,6 +1,6 @@
 #ifndef MENUPRINCIPAL_H_INCLUDED
 #define MENUPRINCIPAL_H_INCLUDED
-
+ 
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -18,21 +18,21 @@ void verFactura(){
  }
  void verJuegoDelUno(){
     system("cls");
-    MenuJuego menujuego;
-    menujuego.mostrarMenuJuego();
+    MenuJuego menuJuego;
+    menuJuego.mostrarMenuJuego();
 }
 void mostrarMenu(){
     string entrada;
     int opcion;
     do{
         system("cls");
-        cout<< endl<<setw(88)<<" Menu Principal ";
+        cout<< endl<<setw(70)<<" Menu Principal ";
         cout<<"\n";
-        cout<< endl<< setw(84)<<"1. Factura";
-        cout<< endl<< setw(86)<<"2. Juego Uno";
-        cout<< endl<<setw(85)<<"3. Limpieza";
-        cout<< endl<< setw(82)<<"4. Salir";
-        cout<<endl<<endl<< setw(93) <<"Seleccione una opcion: ";
+        cout<< endl<< setw(66)<<"1. Factura";
+        cout<< endl<< setw(68)<<"2. Juego Uno";
+        cout<< endl<<setw(67)<<"3. Limpieza";
+        cout<< endl<< setw(64)<<"4. Salir";
+        cout<<endl<<endl<< setw(75) <<"Seleccione una opcion: ";
         cin>>entrada;
 
         bool esValido = false;

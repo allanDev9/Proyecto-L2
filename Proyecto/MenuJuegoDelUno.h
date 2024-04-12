@@ -7,11 +7,13 @@
 #include <iomanip>
 #include <ctime>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-class MenuJuego{
+class MenuJuego{ 
     public:
     void inciarJuegoDelUno(){
+        system("cls");
         string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
                         "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,BloquearTurnoR,"
                         "1AM,2AM,3AM,4AM,5AM,6AM,7AM,8AM,9AM,+2AM,ReversaAM,BloquearTurnoAM,"
@@ -24,38 +26,67 @@ class MenuJuego{
     while (getline(ss, carta, ',')){
         todasLasCartas.push_back(carta);
         }
-    
-    string* jugadorUno = new string[7];
-    srand(time(0));
-    
-    for (int i = 0; i < 7; i++){
-            int indiceCarta = rand() % todasLasCartas.size(); 
-            jugadorUno[i] = todasLasCartas[indiceCarta];
-            todasLasCartas.erase(todasLasCartas.begin() + indiceCarta);
+        const int cartasPorJugador = 7;
+        vector<string> jugadores[4];
+
+    for (int j = 0; j < 4; j++){
+        cout << "\n\nCartas del jugador " << (j + 1) << ":" << endl;
+        for (int i = 0; i < cartasPorJugador; i++){
+            int indiceCarta = rand() % todasLasCartas.size();           
+            string carta = todasLasCartas[indiceCarta];                 
+            jugadores[j].push_back(carta);                              
+            todasLasCartas.erase(todasLasCartas.begin() + indiceCarta); 
+            cout << carta << endl;                                   
+           }
+            system("pause");
+        }
+        while (!todasLasCartas.empty())
+        {
+            // Seleccionar una carta aleatoria de la baraja
+            int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
+            string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
+            cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
+
+            // Iterar sobre cada jugador
+            for (int j = 0; j < 4; j++)
+            {
+                // Verificar si la carta de la baraja coincide con alguna carta de la mano del jugador
+                auto it = find(jugadores[j].begin(), jugadores[j].end(), cartaDeLaBaraja);
+                if (it != jugadores[j].end())
+                {
+                    cout << "La carta tirada coincide con una carta del jugador " << (j + 1) << ". Eliminando la carta del jugador." << endl;
+                    jugadores[j].erase(it); // Eliminar la carta de la mano del jugador
+                    break;                  // Pasar al siguiente jugador
+                }
+            }
+
+            cout << "\nCartas del jugador"<< endl;
+            for (const auto &carta : jugadores[0])
+            {
+                cout << carta << endl;
+            }
+
+            system("pause"); // Pausa antes de pasar al siguiente jugador
+
+            // Eliminar la carta de la baraja seleccionada
+            todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
         }
 
-    cout<< "Cartas del jugador uno:" <<endl;
-    for (int i = 0; i < 7; i++){
-        cout<< *(jugadorUno + i)<<endl;
-      
-        }
-        delete[] jugadorUno;
-    system("pause");
+        system("pause");
     }
-
     void mostrarMenuJuego(){
         string entrada;
         int opcion;
         do
         {
             system("cls");
-            cout << endl<< setw(90) << " Menu Juego Del Uno ";
+            cout << endl<< setw(72) << " Menu Juego Del Uno ";
             cout << "\n";
-            cout << endl<< setw(80) << "1. Uno";
-            cout << endl<< setw(85) << "2. Regresar";
-            cout << endl<< setw(84) << "3. Limpiar";
-            cout << endl<< setw(82) << "4. Salir";
-            cout << endl<< endl<< setw(93) << "Seleccione una opcion: ";
+            cout << endl<< setw(61) << "1. Uno";
+            cout << endl<< setw(66) << "2. Regresar";
+            cout << endl<< setw(65) << "3. Limpiar";
+            cout << endl<< setw(63) << "4. Salir";
+            cout << endl<< endl<< setw(75) << "Seleccione una opcion: ";
             cin >> entrada;
 
             bool esValido = false;
@@ -100,5 +131,5 @@ class MenuJuego{
             }
         } while (opcion != 4);
     }
-};
+};  
 #endif
