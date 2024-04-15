@@ -12,7 +12,7 @@ using namespace std;
 
 class MenuJuego{ 
     public:
-    void inciarJuegoDelUno(){
+    void inciarJuegoDelUno(){ 
         system("cls");
         string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
                         "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,BloquearTurnoR,"
