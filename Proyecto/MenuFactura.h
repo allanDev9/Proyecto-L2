@@ -51,7 +51,6 @@ class MenuFactura{
                  cout << setw(75) << "No se pudo abrir el archivo para escribir.\n";
                  
          }
-       
     }
     
     void mostrarContadorFacturas(){

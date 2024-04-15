@@ -8,6 +8,7 @@
 #include <ctime>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 using namespace std;
 
 class MenuJuego{ 
@@ -40,36 +41,39 @@ class MenuJuego{
            }
             system("pause");
         }
-        while (!todasLasCartas.empty())
-        {
-            // Seleccionar una carta aleatoria de la baraja
-            int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
-            string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
-            cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
+    while (!todasLasCartas.empty()){
+        // Seleccionar una carta aleatoria de la baraja
+        int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
+        string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
+        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 2); // Supone que los últimos dos caracteres representan el color/tipo
 
-            // Iterar sobre cada jugador
-            for (int j = 0; j < 4; j++)
-            {
-                // Verificar si la carta de la baraja coincide con alguna carta de la mano del jugador
-                auto it = find(jugadores[j].begin(), jugadores[j].end(), cartaDeLaBaraja);
-                if (it != jugadores[j].end())
-                {
-                    cout << "La carta tirada coincide con una carta del jugador " << (j + 1) << ". Eliminando la carta del jugador." << endl;
-                    jugadores[j].erase(it); // Eliminar la carta de la mano del jugador
-                    break;                  // Pasar al siguiente jugador
-                }
+        cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
+
+        // Iterar sobre cada jugador
+        for (int j = 0; j < 4; j++){
+            bool cartaEncontrada = false;
+            for (auto it = jugadores[j].begin(); it != jugadores[j].end(); ++it) {
+                string colorJugador = it->substr(it->size() - 2); // Igualmente supone que los últimos dos caracteres representan el color/tipo
+            
+            if (colorJugador == colorDeLaBaraja) {
+                cout << "La carta tirada coincide en color con una carta del jugador " << (j + 1) << ". Eliminando la carta del jugador: " << *it << endl;
+                jugadores[j].erase(it);
+                cartaEncontrada = true;
+                break; // Solo eliminamos una carta a la vez
             }
-   
-            cout << "\nCartas del jugador"<< endl;
-            for (const auto &carta : jugadores[0])
-            {
-                cout << carta << endl;
-            }
+        }
+        if (cartaEncontrada) 
+        break; // Si ya se encontró y eliminó una carta, no se sigue con los otros jugadores
+        }
+        cout << "\nCartas del jugador" << endl;
+        for (const auto &carta : jugadores[0]){
+            cout << carta << endl;   
+        }
 
-            system("pause"); // Pausa antes de pasar al siguiente jugador
+        system("pause"); // Pausa antes de pasar al siguiente jugador
 
-            // Eliminar la carta de la baraja seleccionada
-            todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
+        // Eliminar la carta de la baraja seleccionada
+        todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
         }
 
         system("pause");
@@ -101,7 +105,7 @@ class MenuJuego{
             }
 
             if (!esValido){
-                cout << endl<< setw(83) << "Opcion no valida, intentelo de nuevo. ";
+                cout << endl<< setw(83) <<"Opcion no valida, intentelo de nuevo. ";
                 cout << "\n";
                 system("pause");
                 opcion = 0;

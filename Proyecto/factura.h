@@ -11,7 +11,7 @@ class Factura{
 		string nombre, apellido, fecha;
 		
 	public:
-	void establecerDatos(string _nombre, string _apellido, string _fecha){
+		void establecerDatos(string _nombre, string _apellido, string _fecha){
 		
 		nombre = _nombre; 
 		apellido = _apellido;
@@ -20,4 +20,11 @@ class Factura{
 		
 	}
 };
+
+/*class Productos : public Factura{
+	private;
+
+	public:
+	
+};*/
 #endif
