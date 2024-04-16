@@ -1,2 +1,8 @@
                                                               Nombre: Allan
-                                                              Apellido: Pe¤a                                                              Fecha: 9 / 8 / 2023
+                                                              Apellido: Pe¤a                                                              Fecha: 8/9/24
+Producto: Pepsi
+Cantidad: 1
+Precio: 50.00
+Producto: Pan
+Cantidad: 3
+Precio: 60.00

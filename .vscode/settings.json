@@ -69,7 +69,12 @@
                 "typeinfo": "cpp"
             }
         }
-    ]
+    ],
+    "files.associations": {
+        "vector": "cpp",
+        "iostream": "cpp",
+        "string": "cpp"
+    }
 }
 
 
