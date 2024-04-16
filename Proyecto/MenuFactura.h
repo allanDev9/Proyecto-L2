@@ -27,15 +27,18 @@ class MenuFactura{
     	cin>>nombre;
     	cout<< setw(65) <<"Ingrese su apellido: ";
     	cin>>apellido;
+        system("cls");
         cout<< setw(65) <<" Ingrese el dia (DD): ";
         cin>>dia;
         cout<< setw(65) <<" Ingrese el mes (MM): ";
         cin>>mes;
         cout<< setw(65) <<" Ingrese el año (YYYY): ";
         cin>>anio;
+        system("cls");
         
-        cout<< setw(76) <<"Ingrese la cantidad de productos que desea adquirir: ";
+        cout<< setw(80) <<"Ingrese la cantidad de productos que desea adquirir: ";
         cin>>Cantidad;
+        system("cls");
        
         Producto* productos = new Producto[Cantidad];
 
@@ -44,12 +47,16 @@ class MenuFactura{
         for (int i = 0; i < Cantidad; i++){
             cout<<"Ingrese el nombre del producto " << (i + 1) << ": ";
             cin>>productos[i].descripcion;
+            system("cls");
             cout<<"Ingrese la cantidad de " << productos[i].descripcion <<": ";
             cin>> productos[i].cantidad;
+            system("cls");
             cout<<"Ingrese el precio de " << productos[i].descripcion <<": ";
             cin>> productos[i].precio;
+            system("cls");
             cin.ignore();
             precioTotal += productos[i].precio * productos[i].cantidad;
+            system("cls");
         }
         
         string fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);

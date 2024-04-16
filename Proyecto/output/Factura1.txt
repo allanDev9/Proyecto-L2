@@ -1,8 +1,5 @@
                                                               Nombre: Allan
-                                                              Apellido: Pe¤a                                                              Fecha: 8/9/24
-Producto: Pepsi
-Cantidad: 1
-Precio: 50.00
+                                                              Apellido: Pe¤a                                                              Fecha: 8/2/24
 Producto: Pan
-Cantidad: 3
-Precio: 60.00
+Cantidad: 2
+Precio: 20.00
