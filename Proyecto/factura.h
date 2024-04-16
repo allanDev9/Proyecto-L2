@@ -8,7 +8,7 @@ using namespace std;
 
 class Factura{
 	private:
-		string nombre, apellido, fecha;
+		string nombre, apellido, fecha, descripcion, precio, cantidad, Producto;
 		
 	public:
 		void establecerDatos(string _nombre, string _apellido, string _fecha){
@@ -17,14 +17,13 @@ class Factura{
 		apellido = _apellido;
 		fecha = _fecha;
 
-		
 	}
 };
 
-/*class Productos : public Factura{
-	private;
+struct Producto : public Factura{
+	string descripcion;
+	int cantidad;
+    float precio;
+};
 
-	public:
-	
-};*/
 #endif

@@ -59,7 +59,7 @@ void mostrarMenu(){
             case 1:
                 verFactura();
                 break;
-
+ 
             case 2:
                 verJuegoDelUno();
                 break;
@@ -69,6 +69,15 @@ void mostrarMenu(){
                 break;
 
             case 4:
+                system("cls");
+                cout<< endl << endl <<setw(85)<< "Proyecto Lenguaje De Programacion 2"
+                    << endl << setw(63) <<"Grupo #4"
+                    << endl << setw(68) <<"Integrantes: "
+                    << endl << setw(72)<<"Allan Noé Peña Guerra             20222030732"
+                    << endl << setw(66)<<"Marvin Noel Valladares Nuñez      20222000861"
+                    << endl << setw(68)<<"Helman Samir Lopez Antunez        20212030464"
+                    << endl << setw(65)<<"Dennis Antonio Peña Hernandez     20222000874";
+                system("pause");
                 exit(0);
                 break;
 

@@ -12,7 +12,7 @@ using namespace std;
 
 class MenuJuego{ 
     public:
-    void inciarJuegoDelUno(){ 
+    void inciarJuegoDelUno(){  
         system("cls");
         string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
                         "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,BloquearTurnoR,"
@@ -39,43 +39,51 @@ class MenuJuego{
             cout << carta << endl;                                   
            }
             system("pause");
+            system("cls");
         }
-    while (!todasLasCartas.empty()){
+    while (!todasLasCartas.empty()) {
         // Seleccionar una carta aleatoria de la baraja
         int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
         string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
-        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 2); // Supone que los últimos dos caracteres representan el color/tipo
+        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); // Supone que el último caracter es el color
 
         cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
 
         // Iterar sobre cada jugador
-        for (int j = 0; j < 4; j++){
+        for (int j = 0; j < 4; j++) {
             bool cartaEncontrada = false;
+
+            cout << "\nCartas del jugador " << (j + 1) << ":" << endl;
+            for (const string& carta : jugadores[j]) {
+            cout << carta << " ";
+        }
+            cout << endl;
+
             for (auto it = jugadores[j].begin(); it != jugadores[j].end(); ++it) {
-                string colorJugador = it->substr(it->size() - 2); // Igualmente supone que los últimos dos caracteres representan el color/tipo
-            
-            if (colorJugador == colorDeLaBaraja) {
-                cout << "La carta tirada coincide en color con una carta del jugador " << (j + 1) << ". Eliminando la carta del jugador: " << *it << endl;
-                jugadores[j].erase(it);
-                cartaEncontrada = true;
-                break; // Solo eliminamos una carta a la vez
+                string colorJugador = it->substr(it->size() - 1, 1);
+
+                if (colorJugador == colorDeLaBaraja) {
+                    cout << "Eliminando la carta del jugador: " << *it << endl;
+                    jugadores[j].erase(it);
+                    cartaEncontrada = true;
+                    break;  // Solo eliminamos una carta a la vez
+                }
             }
-        }
-        if (cartaEncontrada) 
-        break; // Si ya se encontró y eliminó una carta, no se sigue con los otros jugadores
-        }
-        cout << "\nCartas del jugador" << endl;
-        for (const auto &carta : jugadores[0]){
-            cout << carta << endl;   
+
+        if (!cartaEncontrada && !todasLasCartas.empty()) {
+            int indiceNuevaCarta = rand() % todasLasCartas.size();
+            jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
+            todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);
+            cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": " << jugadores[j].back() << endl;
         }
 
-        system("pause"); // Pausa antes de pasar al siguiente jugador
+        system("pause"); // Pausa para permitir al usuario ver el cambio
+        system("cls"); // Limpia la pantalla para el siguiente jugador
+    }
 
-        // Eliminar la carta de la baraja seleccionada
-        todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
-        }
-
-        system("pause");
+    // Eliminar la carta de la baraja seleccionada
+    todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
+}
     }
     void mostrarMenuJuego(){
         string entrada;
