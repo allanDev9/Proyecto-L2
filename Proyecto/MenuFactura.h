@@ -7,7 +7,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
-#include <limits>
+#include <sstream>
 using namespace std;
 
 class MenuFactura{
@@ -17,9 +17,10 @@ class MenuFactura{
     void crearFactura(){
     	system("cls");
     	Factura nuevaFactura;
-    	string nombre, apellido;
-        int dia, mes, anio;
-    	
+    	string nombre, apellido, descripcion;
+        int dia, mes, anio, Cantidad;
+    	float precioTotal=0;
+
     	cout<< setw(75) <<"Ingrese los datos de su factura";
     	cout<<"\n\n";
     	cout<< setw(63) <<"Ingrese su nombre: ";
@@ -32,17 +33,43 @@ class MenuFactura{
         cin>>mes;
         cout<< setw(65) <<" Ingrese el año (YYYY): ";
         cin>>anio;
+        
+        cout<< setw(76) <<"Ingrese la cantidad de productos que desea adquirir: ";
+        cin>>Cantidad;
+       
+        Producto* productos = new Producto[Cantidad];
 
+        cin.ignore();
+
+        for (int i = 0; i < Cantidad; i++){
+            cout<<"Ingrese el nombre del producto " << (i + 1) << ": ";
+            cin>>productos[i].descripcion;
+            cout<<"Ingrese la cantidad de " << productos[i].descripcion <<": ";
+            cin>> productos[i].cantidad;
+            cout<<"Ingrese el precio de " << productos[i].descripcion <<": ";
+            cin>> productos[i].precio;
+            cin.ignore();
+            precioTotal += productos[i].precio * productos[i].cantidad;
+        }
+        
         string fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
-
-    	nuevaFactura.establecerDatos(nombre, apellido, fecha);
+        
+    	//nuevaFactura.establecerDatos(nombre, apellido, fecha, descripcion, precio, cantidad);
     	
     	contadorFacturas++;
     	string nombreArchivo = "Factura" + to_string(contadorFacturas) + ".txt";
     	
     	ofstream archivo(nombreArchivo);
         if (archivo.is_open()) {
-              archivo<<setw(70)<<"Nombre: " << nombre << "\n"<<setw(72)<<"Apellido: "<< apellido<<setw(69)<< "Fecha: "<< fecha << endl;
+              archivo<<setw(70)<<"Nombre: " << nombre << "\n"
+                    <<setw(72)<<"Apellido: "<< apellido
+                    <<setw(69)<< "Fecha: "<< fecha;
+
+            for (int i = 0; i < Cantidad; i++){
+                archivo<< "\nProducto: " << productos[i].descripcion
+                       << "\nCantidad: " << productos[i].cantidad
+                       << "\nPrecio: " << fixed << setprecision(2) << productos[i].precio;
+                }
               archivo.close();
               cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
               system("pause");
@@ -51,7 +78,6 @@ class MenuFactura{
                  cout << setw(75) << "No se pudo abrir el archivo para escribir.\n";
                  
          }
-       
     }
     
     void mostrarContadorFacturas(){

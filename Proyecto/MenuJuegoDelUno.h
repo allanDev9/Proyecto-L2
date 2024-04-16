@@ -7,12 +7,12 @@
 #include <iomanip>
 #include <ctime>
 #include <vector>
-#include <algorithm>
+#include <sstream>
 using namespace std;
 
 class MenuJuego{ 
     public:
-    void inciarJuegoDelUno(){
+    void inciarJuegoDelUno(){  
         system("cls");
         string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
                         "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,BloquearTurnoR,"
@@ -39,40 +39,50 @@ class MenuJuego{
             cout << carta << endl;                                   
            }
             system("pause");
+            system("cls");
         }
-        while (!todasLasCartas.empty())
-        {
-            // Seleccionar una carta aleatoria de la baraja
-            int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
-            string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
-            cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
+    while (!todasLasCartas.empty()) {
+        
+        int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
+        string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
+        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); // Supone que el último caracter es el color
 
-            // Iterar sobre cada jugador
-            for (int j = 0; j < 4; j++)
-            {
-                // Verificar si la carta de la baraja coincide con alguna carta de la mano del jugador
-                auto it = find(jugadores[j].begin(), jugadores[j].end(), cartaDeLaBaraja);
-                if (it != jugadores[j].end())
-                {
-                    cout << "La carta tirada coincide con una carta del jugador " << (j + 1) << ". Eliminando la carta del jugador." << endl;
-                    jugadores[j].erase(it); // Eliminar la carta de la mano del jugador
-                    break;                  // Pasar al siguiente jugador
+        cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
+
+
+        for (int j = 0; j < 4; j++) {
+            bool cartaEncontrada = false;
+
+            cout << "\nCartas del jugador " << (j + 1) << ":" << endl;
+            for (const string& carta : jugadores[j]) {
+            cout << carta << " ";
+        }
+            cout << endl;
+
+            for (auto it = jugadores[j].begin(); it != jugadores[j].end(); ++it) {
+                string colorJugador = it->substr(it->size() - 1, 1);
+
+                if (colorJugador == colorDeLaBaraja) {
+                    cout << "Eliminando la carta del jugador: " << *it << endl;
+                    jugadores[j].erase(it);
+                    cartaEncontrada = true;
+                    break; 
                 }
             }
-   
-            cout << "\nCartas del jugador"<< endl;
-            for (const auto &carta : jugadores[0])
-            {
-                cout << carta << endl;
-            }
 
-            system("pause"); // Pausa antes de pasar al siguiente jugador
-
-            // Eliminar la carta de la baraja seleccionada
-            todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
+        if (!cartaEncontrada && !todasLasCartas.empty()) {
+            int indiceNuevaCarta = rand() % todasLasCartas.size();
+            jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
+            todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);
+            cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": " << jugadores[j].back() << endl;
         }
 
-        system("pause");
+        system("pause"); 
+        system("cls"); 
+    }
+
+    todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
+}
     }
     void mostrarMenuJuego(){
         string entrada;
@@ -101,7 +111,7 @@ class MenuJuego{
             }
 
             if (!esValido){
-                cout << endl<< setw(83) << "Opcion no valida, intentelo de nuevo. ";
+                cout << endl<< setw(83) <<"Opcion no valida, intentelo de nuevo. ";
                 cout << "\n";
                 system("pause");
                 opcion = 0;
