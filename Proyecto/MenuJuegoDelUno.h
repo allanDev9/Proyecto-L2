@@ -42,14 +42,14 @@ class MenuJuego{
             system("cls");
         }
     while (!todasLasCartas.empty()) {
-        // Seleccionar una carta aleatoria de la baraja
+        
         int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
         string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
         string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); // Supone que el último caracter es el color
 
         cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
 
-        // Iterar sobre cada jugador
+
         for (int j = 0; j < 4; j++) {
             bool cartaEncontrada = false;
 
@@ -66,7 +66,7 @@ class MenuJuego{
                     cout << "Eliminando la carta del jugador: " << *it << endl;
                     jugadores[j].erase(it);
                     cartaEncontrada = true;
-                    break;  // Solo eliminamos una carta a la vez
+                    break; 
                 }
             }
 
@@ -77,11 +77,10 @@ class MenuJuego{
             cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": " << jugadores[j].back() << endl;
         }
 
-        system("pause"); // Pausa para permitir al usuario ver el cambio
-        system("cls"); // Limpia la pantalla para el siguiente jugador
+        system("pause"); 
+        system("cls"); 
     }
 
-    // Eliminar la carta de la baraja seleccionada
     todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
 }
     }
