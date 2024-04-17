@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <limits>
 using namespace std;
 
 class MenuFactura{
@@ -21,20 +22,95 @@ class MenuFactura{
         int dia, mes, anio, Cantidad;
     	float precioTotal=0;
 
-    	cout<< setw(75) <<"Ingrese los datos de su factura";
-    	cout<<"\n\n";
-    	cout<< setw(63) <<"Ingrese su nombre: ";
-    	cin>>nombre;
-    	cout<< setw(65) <<"Ingrese su apellido: ";
-    	cin>>apellido;
+        
+    cout<< setw(75) <<"Ingrese los datos de su factura";
+    cout<<"\n\n";
+
+    while(true){
+        cout << setw(63) << "Ingrese su primer nombre: ";
+        getline(cin, nombre);
+        if (nombre.empty() || nombre.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ") != string::npos) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<< setw(90)<< "Nombre inválido, solo se permiten letras y espacios. Intente de nuevo: ";
+            cout<<"\n";
+            system("pause");
+            system("cls");
+        } else {
+            break;
+        }
+    } 
+
+    // Ingreso y validación del apellido
+    system("cls");
+    while(true){
+        cout << setw(65) << "Ingrese su primer apellido: ";
+        getline(cin, apellido);
+        if (apellido.empty() || apellido.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ") != string::npos) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<< setw(90)<< "Apellido inválido, solo se permiten letras y espacios. Intente de nuevo: ";
+            cout<<"\n";
+            system("pause");
+            system("cls");
+        } else {
+            break;
+        }
+    } 
+
+    system("cls");
+        
+        while (true) {
+        cout << setw(65) << "Ingrese el día (DD): ";
+        cin >> dia;
+        if (cin.fail() || dia < 1 || dia > 31) {
+            cin.clear(); // Limpia el estado de error de cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descarta la entrada incorrecta
+            cout << endl << setw(75) << "Entrada inválida. Por favor, ingrese un número válido para el día (1-31).";
+            cout<<"\n";
+            system("pause");
+            system("cls");
+        } else {
+            break; // Salir del bucle si la entrada es válida
+        }
+    }
+
+    // Validación del mes
+    while (true) {
         system("cls");
-        cout<< setw(65) <<" Ingrese el dia (DD): ";
-        cin>>dia;
-        cout<< setw(65) <<" Ingrese el mes (MM): ";
-        cin>>mes;
-        cout<< setw(65) <<" Ingrese el año (YYYY): ";
-        cin>>anio;
+        cout << setw(65) << "Ingrese el mes (MM): ";
+        cin >> mes;
+        if (cin.fail() || mes < 1 || mes > 12) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl << setw(75)<< "Entrada inválida. Por favor, ingrese un número válido para el mes (1-12).";
+            cout<<"\n";
+            system("pause");
+            system("cls");
+        } else {
+            break;
+        }
+    }
+
+    // Validación del año
+    while (true) {
         system("cls");
+        cout << setw(65) << "Ingrese el año (YYYY): ";
+        cin >> anio;
+        if (cin.fail() || anio < 1900 || anio > 2024) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl << setw(75)<< "Entrada inválida. Por favor, ingrese un número válido para el año (1900-2024).";
+            cout<<"\n";
+            system("pause");
+            system("cls");
+        } else {
+            break;
+        }
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("cls");
+    
+        
         
         cout<< setw(80) <<"Ingrese la cantidad de productos que desea adquirir: ";
         cin>>Cantidad;
@@ -61,8 +137,6 @@ class MenuFactura{
         
         string fecha = to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio);
         
-    	//nuevaFactura.establecerDatos(nombre, apellido, fecha, descripcion, precio, cantidad);
-    	
     	contadorFacturas++;
     	string nombreArchivo = "Factura" + to_string(contadorFacturas) + ".txt";
     	

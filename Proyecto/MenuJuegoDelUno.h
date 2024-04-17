@@ -12,6 +12,35 @@ using namespace std;
 
 class MenuJuego{ 
     public:
+        const string RESET = "\033[0m";
+        const string RED = "\033[31m";
+        const string GREEN = "\033[32m";
+        const string YELLOW = "\033[33m";
+        const string BLUE = "\033[34m";
+        const string MAGENTA = "\033[35m";
+        const string CYAN = "\033[36m";
+        const string WHITE = "\033[37m";
+
+    string getColor(const string& card) {
+        char lastChar = card.back(); 
+    switch (lastChar) {
+        case 'A':
+            return BLUE;
+        case 'R':
+            return RED;
+        case 'M':
+            return YELLOW; 
+        case 'V':
+            return GREEN;
+        default:
+            return WHITE; 
+        }
+    }
+
+    void printCard(const string& card) {
+        cout << getColor(card) << card << RESET << " ";
+    }
+
     void inciarJuegoDelUno(){  
         system("cls");
         string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
@@ -36,7 +65,7 @@ class MenuJuego{
             string carta = todasLasCartas[indiceCarta];                 
             jugadores[j].push_back(carta);                              
             todasLasCartas.erase(todasLasCartas.begin() + indiceCarta); 
-            cout << carta << endl;                                   
+            printCard(carta);                                  
            }
             system("pause");
             system("cls");
@@ -45,8 +74,7 @@ class MenuJuego{
         
         int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
         string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
-        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); // Supone que el último caracter es el color
-
+        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); 
         cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
 
 

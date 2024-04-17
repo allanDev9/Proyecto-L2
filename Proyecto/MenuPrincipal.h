@@ -38,8 +38,7 @@ void mostrarMenu(){
 
         bool esValido = false;
 
-        if (entrada.length() == 1)
-        { 
+        if (entrada.length() == 1){ 
             int codigoAscii = entrada[0];
             if (codigoAscii >= '1' && codigoAscii <= '4')
             {
