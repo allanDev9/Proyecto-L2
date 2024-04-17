@@ -20,6 +20,9 @@ class MenuJuego{
         const string WHITE = "\033[37m";
 
     string getColor(const string& card) {
+        if (card.find("CambioDeColor") != string::npos || card.find("+4") != string::npos) {
+        return WHITE; 
+    }
         char lastChar = card.back(); 
     switch (lastChar) {
         case 'A':
@@ -63,25 +66,24 @@ class MenuJuego{
             string carta = todasLasCartas[indiceCarta];                 
             jugadores[j].push_back(carta);                              
             todasLasCartas.erase(todasLasCartas.begin() + indiceCarta); 
-            printCard(carta);                                  
+            printCard(carta);                                 
            }
             system("pause");
             system("cls");
         }
-    while (!todasLasCartas.empty()) {
-        
+    while (!todasLasCartas.empty()){
         int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
         string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
         string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); 
-        cout << "\n\nCarta de la baraja: " << cartaDeLaBaraja << endl;
-
+        cout << "\n\nCarta de la baraja: "; printCard(cartaDeLaBaraja);
+        cout<<endl;
 
         for (int j = 0; j < 4; j++) {
             bool cartaEncontrada = false;
 
             cout << "\nCartas del jugador " << (j + 1) << ":" << endl;
             for (const string& carta : jugadores[j]) {
-            cout << carta << " ";
+            printCard(carta);
         }
             cout << endl;
 
@@ -89,7 +91,8 @@ class MenuJuego{
                 string colorJugador = it->substr(it->size() - 1, 1);
 
                 if (colorJugador == colorDeLaBaraja) {
-                    cout << "Eliminando la carta del jugador: " << *it << endl;
+                    cout << "Eliminando la carta del jugador: "; printCard(*it);
+                    cout<<endl;
                     jugadores[j].erase(it);
                     cartaEncontrada = true;
                     break; 
@@ -100,7 +103,8 @@ class MenuJuego{
             int indiceNuevaCarta = rand() % todasLasCartas.size();
             jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
             todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);
-            cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": " << jugadores[j].back() << endl;
+            cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": "; printCard(jugadores[j].back());
+            cout<<endl;
         }
 
         system("pause"); 
