@@ -1,5 +1,1 @@
-                            Nombre completo: Allan                                         Fecha: 12/12/2022
-
-          Producto: Pan                         Cantidad: 2                                        Precio: 2.00                                Monto Total: 4.00
-
-          Producto: Pan                         Cantidad: 2                                        Precio: 20.00                                Monto Total: 40.00
+                            Nombre completo: Pe¤a                                         Fecha: 12/12/2022

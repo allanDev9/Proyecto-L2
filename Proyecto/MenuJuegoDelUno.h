@@ -44,11 +44,11 @@ class MenuJuego{
 
     void inciarJuegoDelUno(){  
         system("cls");
-        string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,BloquearTurnoA,"
-                        "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,BloquearTurnoR,"
-                        "1AM,2AM,3AM,4AM,5AM,6AM,7AM,8AM,9AM,+2AM,ReversaAM,BloquearTurnoAM,"
-                        "1V,2V,3V,4V,5V,6V,7V,8V,9V,+2V,ReversaV,BloquearTurnoV,"
-                        "+4_1,+4_2,+4_3,+4_4,CambioDeColor1,CambioDeColor2,CambioDeColor3,CambioDeColor4";
+        string cartasStr = "1A,2A,3A,4A,5A,6A,7A,8A,9A,+2A,ReversaA,"
+                        "1R,2R,3R,4R,5R,6R,7R,8R,9R,+2R,ReversaR,"
+                        "1AM,2AM,3AM,4AM,5AM,6AM,7AM,8AM,9AM,+2AM,ReversaAM,"
+                        "1V,2V,3V,4V,5V,6V,7V,8V,9V,+2V,ReversaV,"
+                        "+4_1,+4_2,+4_3,+4_4";
 
     vector<string> todasLasCartas;
     stringstream ss(cartasStr);

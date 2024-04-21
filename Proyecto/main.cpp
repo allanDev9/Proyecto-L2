@@ -2,13 +2,12 @@
 #include "MenuFactura.h"
 #include "MenuPrincipal.h"
 #include "factura.h"
-#include <locale.h>
-
+#include <locale>
 using namespace std;
 
 int main(){  
-
-    setlocale(LC_ALL,"spanish");
+    
+    setlocale(LC_ALL, "Spanish");
     MenuPrincipal menu;
     menu.mostrarMenu();
     
