@@ -58,61 +58,67 @@ class MenuJuego{
         }
         const int cartasPorJugador = 7;
         vector<string> jugadores[4];
+        bool sentidoDelJuego = true; // true = sentido normal, false = sentido inverso
 
-    for (int j = 0; j < 4; j++){
-        cout << "\n\nCartas del jugador " << (j + 1) << ":" << endl;
-        for (int i = 0; i < cartasPorJugador; i++){
-            int indiceCarta = rand() % todasLasCartas.size();           
-            string carta = todasLasCartas[indiceCarta];                 
-            jugadores[j].push_back(carta);                              
-            todasLasCartas.erase(todasLasCartas.begin() + indiceCarta); 
-            printCard(carta);                                 
-           }
+        for (int j = 0; j < 4; j++){
+            cout << "\n\nCartas del jugador " << (j + 1) << ":" << endl;
+            for (int i = 0; i < cartasPorJugador; i++){
+                int indiceCarta = rand() % todasLasCartas.size();           
+                string carta = todasLasCartas[indiceCarta];                 
+                jugadores[j].push_back(carta);                              
+                todasLasCartas.erase(todasLasCartas.begin() + indiceCarta); 
+                printCard(carta);                                 
+            }
             system("pause");
             system("cls");
         }
-    while (!todasLasCartas.empty()){
-        int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
-        string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
-        string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); 
-        cout << "\n\nCarta de la baraja: "; printCard(cartaDeLaBaraja);
-        cout<<endl;
+        while (!todasLasCartas.empty()){
+            int indiceCartaDeLaBaraja = rand() % todasLasCartas.size();
+            string cartaDeLaBaraja = todasLasCartas[indiceCartaDeLaBaraja];
+            string colorDeLaBaraja = cartaDeLaBaraja.substr(cartaDeLaBaraja.size() - 1, 1); 
+            cout << "\n\nCarta de la baraja: "; printCard(cartaDeLaBaraja);
+            cout<<endl;
 
-        for (int j = 0; j < 4; j++) {
-            bool cartaEncontrada = false;
-
-            cout << "\nCartas del jugador " << (j + 1) << ":" << endl;
-            for (const string& carta : jugadores[j]) {
-            printCard(carta);
-        }
-            cout << endl;
-
-            for (auto it = jugadores[j].begin(); it != jugadores[j].end(); ++it) {
-                string colorJugador = it->substr(it->size() - 1, 1);
-
-                if (colorJugador == colorDeLaBaraja){
-                    cout << "Eliminando la carta del jugador: "; printCard(*it);
-                    cout<<endl;
-                    jugadores[j].erase(it);
-                    cartaEncontrada = true;
-                    break; 
-                }
+            if (cartaDeLaBaraja.find("Reversa")!= string::npos) {
+                sentidoDelJuego =!sentidoDelJuego;
+                cout << "Sentido del juego invertido!" << endl;
             }
 
-        if (!cartaEncontrada && !todasLasCartas.empty()){
-            int indiceNuevaCarta = rand() % todasLasCartas.size();
-            jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
-            todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);
-            cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": "; printCard(jugadores[j].back());
-            cout<<endl;
+            for (int j = sentidoDelJuego? 0 : 3; sentidoDelJuego? j < 4 : j >= 0; sentidoDelJuego? j++ : j--) {
+                bool cartaEncontrada = false;
+
+                cout << "\nCartas del jugador " << (j + 1) << ":" << endl;
+                for (const string& carta : jugadores[j]) {
+                    printCard(carta);
+                }
+                cout << endl;
+
+                for (auto it = jugadores[j].begin(); it!= jugadores[j].end(); ++it) {
+                    string colorJugador = it->substr(it->size() - 1, 1);
+
+                    if (colorJugador == colorDeLaBaraja){
+                        cout << "Eliminando la carta del jugador: "; printCard(*it);
+                        cout<<endl;
+                        jugadores[j].erase(it);
+                        cartaEncontrada = true;
+                        break; 
+                    }
+                }
+
+                if (!cartaEncontrada &&!todasLasCartas.empty()){
+                    int indiceNuevaCarta = rand() % todasLasCartas.size();
+                    jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
+                    todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);
+                    cout << "Una nueva carta ha sido añadida al jugador " << (j + 1) << ": "; printCard(jugadores[j].back());
+                    cout<<endl;
+                }
+
+                system("pause"); 
+                system("cls"); 
+            }
+
+            todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
         }
-
-        system("pause"); 
-        system("cls"); 
-    }
-
-    todasLasCartas.erase(todasLasCartas.begin() + indiceCartaDeLaBaraja);
-}
     }
     void mostrarMenuJuego(){
         string entrada;
