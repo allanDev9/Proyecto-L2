@@ -90,7 +90,7 @@ class MenuJuego{
             for (auto it = jugadores[j].begin(); it != jugadores[j].end(); ++it) {
                 string colorJugador = it->substr(it->size() - 1, 1);
 
-                if (colorJugador == colorDeLaBaraja) {
+                if (colorJugador == colorDeLaBaraja){
                     cout << "Eliminando la carta del jugador: "; printCard(*it);
                     cout<<endl;
                     jugadores[j].erase(it);
@@ -99,7 +99,7 @@ class MenuJuego{
                 }
             }
 
-        if (!cartaEncontrada && !todasLasCartas.empty()) {
+        if (!cartaEncontrada && !todasLasCartas.empty()){
             int indiceNuevaCarta = rand() % todasLasCartas.size();
             jugadores[j].push_back(todasLasCartas[indiceNuevaCarta]);
             todasLasCartas.erase(todasLasCartas.begin() + indiceNuevaCarta);

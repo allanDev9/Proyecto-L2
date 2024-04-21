@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <sstream>
 #include <limits>
+
 using namespace std;
 
 class MenuFactura{
@@ -18,62 +19,34 @@ class MenuFactura{
     void crearFactura(){
     	system("cls");
     	Factura nuevaFactura;
-    	string nombre, apellido, descripcion;
+    	string descripcion;
         int dia, mes, anio, Cantidad;
-    	float precioTotal=0;
 
-        
-    cout<< setw(75) <<"Ingrese los datos de su factura";
-    cout<<"\n\n";
+    cout << setw(75) << "Ingrese los datos de su factura" << endl << endl;
+    cout << setw(75) << "Ingrese su nombre completo: ";
+    char nombre[100];
+    if (cin.peek() == '\n') {
+        cin.ignore();
+    }
+    cin.getline(nombre, 100);
 
-    while(true){
-        cout << setw(63) << "Ingrese su primer nombre: ";
-        getline(cin, nombre);
-        if (nombre.empty() || nombre.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ") != string::npos) {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout<< setw(90)<< "Nombre inválido, solo se permiten letras y espacios. Intente de nuevo: ";
-            cout<<"\n";
-            system("pause");
-            system("cls");
-        } else {
-            break;
-        }
-    } 
+    system("cls"); 
 
-    // Ingreso y validación del apellido
-    system("cls");
-    while(true){
-        cout << setw(65) << "Ingrese su primer apellido: ";
-        getline(cin, apellido);
-        if (apellido.empty() || apellido.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ") != string::npos) {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout<< setw(90)<< "Apellido inválido, solo se permiten letras y espacios. Intente de nuevo: ";
-            cout<<"\n";
-            system("pause");
-            system("cls");
-        } else {
-            break;
-        }
-    } 
-
-    system("cls");
-        
-        while (true) {
+    while (true) {
         cout << setw(65) << "Ingrese el día (DD): ";
         cin >> dia;
         if (cin.fail() || dia < 1 || dia > 31) {
-            cin.clear(); // Limpia el estado de error de cin
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descarta la entrada incorrecta
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << endl << setw(75) << "Entrada inválida. Por favor, ingrese un número válido para el día (1-31).";
             cout<<"\n";
             system("pause");
             system("cls");
         } else {
-            break; // Salir del bucle si la entrada es válida
+            break; 
         }
     }
 
-    // Validación del mes
     while (true) {
         system("cls");
         cout << setw(65) << "Ingrese el mes (MM): ";
@@ -86,11 +59,11 @@ class MenuFactura{
             system("pause");
             system("cls");
         } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
         }
     }
 
-    // Validación del año
     while (true) {
         system("cls");
         cout << setw(65) << "Ingrese el año (YYYY): ";
@@ -103,15 +76,14 @@ class MenuFactura{
             system("pause");
             system("cls");
         } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
         }
     }
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore();
     system("cls");
     
-        
-        
         cout<< setw(80) <<"Ingrese la cantidad de productos que desea adquirir: ";
         cin>>Cantidad;
         system("cls");
@@ -131,7 +103,6 @@ class MenuFactura{
             cin>> productos[i].precio;
             system("cls");
             cin.ignore();
-            precioTotal += productos[i].precio * productos[i].cantidad;
             system("cls");
         }
         
@@ -142,14 +113,14 @@ class MenuFactura{
     	
     	ofstream archivo(nombreArchivo);
         if (archivo.is_open()) {
-              archivo<<setw(70)<<"Nombre: " << nombre << "\n"
-                    <<setw(72)<<"Apellido: "<< apellido
-                    <<setw(69)<< "Fecha: "<< fecha;
-
+              archivo<<setw(45)<<"Nombre completo: " << nombre
+                    <<setw(48)<< "Fecha: "<< fecha;
+          
             for (int i = 0; i < Cantidad; i++){
-                archivo<< "\nProducto: " << productos[i].descripcion
-                       << "\nCantidad: " << productos[i].cantidad
-                       << "\nPrecio: " << fixed << setprecision(2) << productos[i].precio;
+                archivo<<endl <<endl <<setw(20)<< "Producto: " << productos[i].descripcion
+                       << setw(35) << "Cantidad: " << productos[i].cantidad
+                       << setw(48) << "Precio: " << fixed << setprecision(2) << productos[i].precio
+                       << setw(45) << "Monto Total: "<<productos[i].precio * productos[i].cantidad;
                 }
               archivo.close();
               cout << endl<< setw(72) << "Factura creada exitosamente. " << endl;
@@ -159,7 +130,8 @@ class MenuFactura{
                  cout << setw(75) << "No se pudo abrir el archivo para escribir.\n";
                  
          }
-    }
+    } 
+    
     
     void mostrarContadorFacturas(){
 			cout<< endl<< setw (62)<< "Se han creado "<< contadorFacturas << " factura. " <<endl;
@@ -194,7 +166,7 @@ class MenuFactura{
 		}
     }
     void abrirFactura(int numeroFactura){
-    	cout<< endl<< setw(73) <<"Factura # "<<contadorFacturas<<endl;
+    	cout<< endl<< setw(73) <<"Factura # "<<contadorFacturas;
     	cout<<"\n";
     	string nombreArchivo = "Factura" + to_string(numeroFactura) + ".txt";
     	ifstream archivo(nombreArchivo);
